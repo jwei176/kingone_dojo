@@ -121,13 +121,13 @@ li {
   };
   
 
-  // Object.keys(f001).forEach((val) => {
-  //   document.getElementById('f001-' + val).textContent =  f001[val];
-  // });
+// Object.keys(f001).forEach((val) => {
+//   document.getElementById('f001-' + val).textContent =  f001[val];
+// });
 
 
-  // Object.keys(f002).forEach((val) => {
-  //   document.getElementById('f002-' + val).textContent =  f002[val];
+// Object.keys(f002).forEach((val) => {
+//   document.getElementById('f002-' + val).textContent =  f002[val];
   // });
 
   // Object.keys(f003).forEach((val) => {
@@ -139,8 +139,8 @@ li {
     Object.keys(fileManage[element]).forEach((val) => {
       document.getElementById(element + '-' + val).textContent = fileManage[element][val];
       if (fileManage[element][val] === 'Everyone') {
-        let myList = document.getElementById("list");
-        var li = document.createElement('li');
+        const myList = document.getElementById("list");
+        const li = document.createElement('li');
         li.innerHTML = fileManage[element]['folderName'];
         myList.appendChild(li);
       }
