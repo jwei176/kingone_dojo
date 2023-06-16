@@ -92,32 +92,49 @@ li {
 <script>
   "use strict";
   // ここに処理を記載する
-  const f001 = {
-    folderName: '情報システム部',
-    viewAuth: 'Everyone' ,
-    editAuth: '情報システム部',
-    deleteAuth: '情報システム部',
-  }; 
+  // const f001 = {
+  //   folderName: '情報システム部',
+  //   viewAuth: 'Everyone' ,
+  //   editAuth: '情報システム部',
+  //   deleteAuth: '情報システム部',
+  // }; 
 
-  const f002 = {
-    folderName: '経営管理部',
-    viewAuth: '経営管理部' ,
-    editAuth: '経営管理',
-    deleteAuth: '経営管理',
-  }; 
+  // const f002 = {
+  //   folderName: '経営管理部',
+  //   viewAuth: '経営管理部' ,
+  //   editAuth: '経営管理',
+  //   deleteAuth: '経営管理',
+  // }; 
 
-  const f003 = {
-    folderName: '営業部',
-    viewAuth: 'Everyone' ,
-    editAuth: '営業部',
-    deleteAuth: '営業部',
-  }; 
+  // const f003 = {
+  //   folderName: '営業部',
+  //   viewAuth: 'Everyone' ,
+  //   editAuth: '営業部',
+  //   deleteAuth: '営業部',
+  // }; 
    
   
   const fileManage = {
-    f001,
-    f002,
-    f003
+    f001 : {
+      folderName: '情報システム部',
+      viewAuth: 'Everyone',
+      editAuth: '情報システム部',
+      deleteAuth: '情報システム部',
+    }, 
+
+    f002 : {
+      folderName: '経営管理部',
+      viewAuth: '経営管理部' ,
+      editAuth: '経営管理',
+      deleteAuth: '経営管理',
+    }, 
+
+    f003 : {
+      folderName: '営業部',
+      viewAuth: 'Everyone',
+      editAuth: '営業部',
+      deleteAuth: '営業部',
+    }, 
   };
   
 
@@ -141,7 +158,7 @@ li {
       if (fileManage[element][val] === 'Everyone') {
         const myList = document.getElementById("list");
         const li = document.createElement('li');
-        li.innerHTML = fileManage[element]['folderName'];
+        li.innerHTML = fileManage[element].folderName;
         myList.appendChild(li);
       }
     });
