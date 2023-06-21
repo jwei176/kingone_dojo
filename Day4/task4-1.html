@@ -53,53 +53,33 @@ header h2 {
 <script>
   // ここに処理を記載する
   'use strict';
-  // document.getElementsByClassName("chk")[0].onclick = () => {
-  //   const check_1 = document.getElementsByClassName("chk")[0].value;
-  //   const total = document.getElementById("price").textContent;
-  //   document.getElementById("price").textContent = Number(total)+ Number(check_1);
-  // }  
-  // document.getElementsByClassName("chk")[1].onclick = () => {
-  //   const check_2 = document.getElementsByClassName("chk")[1].value;
-  //   // console.log(test);
-  //   const total = document.getElementById("price").textContent;
-  //   console.log(Number(total)+ Number(check_2)) ;
-  // }
-
 
     const [checkbox1, checkbox2] = document.getElementsByClassName('chk');
     const val1 = document.getElementsByClassName('chk')[0].value;
     const val2 = document.getElementsByClassName('chk')[1].value;
 
-    const total = document.getElementById('price').textContent;
+    let total = 3900;
 
 
     checkbox1.onclick = () => {
-      if (checkbox1.checked === true && checkbox2.checked === false) {
-        document.getElementById('price').textContent = Number(total) + (Number(val1) * 5);
-      } else if (checkbox1.checked === true && checkbox2.checked === true) {
-        document.getElementById('price').textContent = Number(total) + (Number(val1) * 5) + Number(val2);
-      } else if (checkbox1.checked === false && checkbox2.checked === true) {
-        document.getElementById('price').textContent = Number(total) + Number(val2);
+      if (checkbox1.checked) {
+        total +=Number(val1)*5;
       } else {
-        document.getElementById('price').textContent = Number(total);
-      }
+        total -= Number(val1)*5;
+      };
+      document.getElementById('price').textContent = total;
     };
 
-
+    
     checkbox2.onclick = () => {
-      if (checkbox1.checked === true && checkbox2.checked === false) {
-        document.getElementById('price').textContent = Number(total) + (Number(val1) * 5);
-      } else if (checkbox1.checked === true && checkbox2.checked === true) {
-        document.getElementById('price').textContent = Number(total) + (Number(val1) * 5) + Number(val2);
-      } else if (checkbox1.checked === false && checkbox2.checked === true) {
-        document.getElementById('price').textContent = Number(total) + Number(val2);
+      if (checkbox2.checked) {
+        total +=Number(val2);
       } else {
-        document.getElementById('price').textContent = Number(total);
-      }
+        total -= Number(val2);
+      };
+      document.getElementById('price').textContent = total;
     };
-      
-  
-  
+
 </script>
 </body>
 </html>

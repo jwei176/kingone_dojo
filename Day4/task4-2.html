@@ -70,50 +70,34 @@ header h2 {
   // ここに処理を記載する
     'use strict';
 
-    const [checkbox1, checkbox2] = document.getElementsByClassName('chk');
-    const val1 = document.getElementsByClassName('chk')[0].value;
-    const val2 = document.getElementsByClassName('chk')[1].value;
+    const chk = document.getElementsByClassName('chk');
+    const chk1_price = document.getElementsByClassName('chk')[0].value;
+    const chk2_price = document.getElementsByClassName('chk')[1].value;
     const opt1 = document.getElementsByClassName('slct')[0];
     const opt2 = document.getElementsByClassName('slct')[1];
     const button = document.getElementById('btn');
-
-    const total = document.getElementById('price').textContent;
-    // checkbox1とcheckbox2それぞれの合計
-    const arr = [val1, val2];
-
-
-    checkbox1.onclick = () => {
-      if (checkbox1.checked === true) {
-      // console.log(arr[0])
-        opt1.addEventListener('change', function() {
-          arr[0] = Number(val1) * opt1.value;
-        // console.log(arr[0]);
-        });
-      }
-    };
-
-    checkbox2.onclick = () => {
-      if (checkbox2.checked === true) {
-          opt2.addEventListener('change', function() {
-            arr[1] = Number(val2) * opt2.value;
-        // console.log(arr[1]);
-        });
-      }
-    };
-
+    
+    
     button.onclick = () => {
-      if (checkbox1.checked === true && checkbox2.checked === false) {
-        document.getElementById('price').textContent = Number(arr[0]) + Number(total);
-      } else if (checkbox1.checked === true && checkbox2.checked === true) {
-        document.getElementById('price').textContent = (Number(arr[0]) + Number(arr[1]) + Number(total));
-      } else if (checkbox1.checked === false && checkbox2.checked === true) {
-        document.getElementById('price').textContent = (Number(arr[1]) + Number(total));
-      } else {
-        document.getElementById('price').textContent = (Number(total));
-      }
-    }
+      let total = 3900;
+      let chk1_opt = 0;
+      let chk2_opt = 0;
 
 
+
+      if (chk[0].checked) {
+          chk1_opt += Number(chk1_price) * opt1.value;
+        } else if(!chk[0].checked) {
+          chk1_opt = 0;
+      };
+
+      if (chk[1].checked) {
+          chk2_opt += Number(chk2_price) * opt2.value;
+        } else if(!chk[1].checked) {
+          chk2_opt = 0;
+      };
+      document.getElementById('price').textContent = total + chk1_opt + chk2_opt;
+    };
 </script>
 </body>
 </html>
