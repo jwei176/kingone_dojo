@@ -42,5 +42,7 @@
 
     //update 重複禁止項目_文字列
     event.record.重複禁止項目_文字列.value = `${date}-${product}-${manageNO}`;
+    event.record.重複禁止項目_文字列.disabled = true;
+    return event;
   });
 })();
