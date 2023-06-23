@@ -68,36 +68,27 @@ header h2 {
 </main>
 <script>
   // ここに処理を記載する
-    'use strict';
+  'use strict';
 
-    const chk = document.getElementsByClassName('chk');
-    const chk1_price = document.getElementsByClassName('chk')[0].value;
-    const chk2_price = document.getElementsByClassName('chk')[1].value;
-    const opt1 = document.getElementsByClassName('slct')[0];
-    const opt2 = document.getElementsByClassName('slct')[1];
-    const button = document.getElementById('btn');
-    
-    
-    button.onclick = () => {
-      let total = 3900;
-      let chk1_opt = 0;
-      let chk2_opt = 0;
+  const chk = document.getElementsByClassName('chk');
+  const chk1_price = document.getElementsByClassName('chk')[0].value;
+  const chk2_price = document.getElementsByClassName('chk')[1].value;
+  const button = document.getElementById('btn');
+  const select = document.getElementsByClassName('slct');
 
 
+  button.onclick = () => {
+    let total = 3900;
 
-      if (chk[0].checked) {
-          chk1_opt += Number(chk1_price) * opt1.value;
-        } else if(!chk[0].checked) {
-          chk1_opt = 0;
-      };
+    if (chk[0].checked) {
+      total += Number(chk1_price) * Number(select[0].value);
+    }
 
-      if (chk[1].checked) {
-          chk2_opt += Number(chk2_price) * opt2.value;
-        } else if(!chk[1].checked) {
-          chk2_opt = 0;
-      };
-      document.getElementById('price').textContent = total + chk1_opt + chk2_opt;
-    };
+    if (chk[1].checked) {
+      total += Number(chk2_price) * Number(select[1].value);
+    }
+    document.getElementById('price').textContent = total;
+  };
 </script>
 </body>
 </html>

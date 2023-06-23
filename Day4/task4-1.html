@@ -52,33 +52,33 @@ header h2 {
 </main>
 <script>
   // ここに処理を記載する
-  'use strict';
+'use strict';
 
-    const [checkbox1, checkbox2] = document.getElementsByClassName('chk');
-    const val1 = document.getElementsByClassName('chk')[0].value;
-    const val2 = document.getElementsByClassName('chk')[1].value;
+const [checkbox1, checkbox2] = document.getElementsByClassName('chk');
+const chk1_price = document.getElementsByClassName('chk')[0].value;
+const chk2_price = document.getElementsByClassName('chk')[1].value;
 
-    let total = 3900;
+let total = 3900;
 
 
-    checkbox1.onclick = () => {
-      if (checkbox1.checked) {
-        total +=Number(val1)*5;
-      } else {
-        total -= Number(val1)*5;
-      };
-      document.getElementById('price').textContent = total;
-    };
+checkbox1.onclick = () => {
+  if (checkbox1.checked) {
+    total += Number(chk1_price) * 5;
+  } else {
+    total -= Number(chk1_price) * 5;
+  }
+  document.getElementById('price').textContent = total;
+};
 
-    
-    checkbox2.onclick = () => {
-      if (checkbox2.checked) {
-        total +=Number(val2);
-      } else {
-        total -= Number(val2);
-      };
-      document.getElementById('price').textContent = total;
-    };
+
+checkbox2.onclick = () => {
+  if (checkbox2.checked) {
+    total += Number(chk2_price);
+  } else {
+    total -= Number(chk2_price);
+  }
+  document.getElementById('price').textContent = total;
+};
 
 </script>
 </body>
