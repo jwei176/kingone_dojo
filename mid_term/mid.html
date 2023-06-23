@@ -36,42 +36,43 @@
 
 
 <script>
-'use strict';
-
-axios.get('https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo', {
-  params: {
-    id: 'dojo',
-    query: 'order by day desc limit 3',
-  }
-}).then((resp) => {
-  const myTable = document.getElementById('Table');
-  // console.log(resp);
-  Object.keys(resp.data).forEach((ele) => {
-  //create table
-    const row = myTable.insertRow(-1);
-    const cell = row.insertCell(0);
-    const cell1 = row.insertCell(1);
-    const cell2 = row.insertCell(2);
-    cell.innerHTML = resp.data[ele].day.value;
-    cell1.innerHTML = resp.data[ele].category.value;
-    let content = resp.data[ele].content.value;
-    //タイトル⽂字数が30を超えるときは表⽰制限
-    if (content.length > 30) {
-      content = content.substring(0,30) + '   ...';
-    } else {
-      content = resp.data[ele].content.value;
-    }
-    cell2.innerHTML = `<a href="${resp.data[ele].url.value}" target="${resp.data[ele].target.value}">${content}</a>`;
-  });
-
-  //カテゴリーごとに⾊分け
-  $("td:contains('製品')").css("background-color", "#7fffd4");
-  $("td:contains('IR 情報')").css("background-color", "#ff9999");
-  $("td:contains('企業情報')").css("background-color", "#00b7eb");
+  'use strict';
   
-}).catch((err) => {
-  console.log(`${err}`);
-});
+  axios.get('https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo', {
+    params: {
+      id: 'dojo',
+      query: 'order by day desc limit 3',
+    }
+  }).then((resp) => {
+    const myTable = document.getElementById('Table');
+    // console.log(resp);
+    Object.keys(resp.data).forEach((ele) => {
+    //create table
+      const row = myTable.insertRow(-1);
+      const cell = row.insertCell(0);
+      const cell1 = row.insertCell(1);
+      const cell2 = row.insertCell(2);
+      cell.textContent = resp.data[ele].day.value;
+      cell1.textContent = resp.data[ele].category.value;
+      let content = resp.data[ele].content.value;
+      //タイトル⽂字数が30を超えるときは表⽰制限
+      if (content.length > 30) {
+        content = content.substring(0, 30) + '   ...';
+      } else {
+        content = resp.data[ele].content.value;
+      }
+      cell2.innerHTML = `<a href="${resp.data[ele].url.value}" target="${resp.data[ele].target.value}">${content}</a>`;
+    });
+  
+    //カテゴリーごとに⾊分け
+    $("td:contains('製品')").css('background-color', '#7fffd4');
+    $("td:contains('IR 情報')").css('background-color', '#ff9999');
+    $("td:contains('企業情報')").css('background-color', '#00b7eb');
+  
+  
+  }).catch((err) => {
+    console.log(`${err}`);
+  });
 </script>
 </body>
 </html>
