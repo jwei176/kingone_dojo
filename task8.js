@@ -2,32 +2,51 @@
   'use strict';
   kintone.events.on('app.record.create.show', async (event) => {
     const dropdown = [];
-    const list = [];
+    const ID = kintone.app.getId();
     const params = {
-      app: '15',
+      app: ID,
     };
-    kintone.api(kintone.api.url('/k/v1/app/form/fields.json', true), 'GET', params, (resp) => {
-      console.log(resp.properties);
-      Object.values(resp.properties.Table.fields.Action5.options).forEach((ele) => {
-        dropdown.push(ele);
-      });
-      // console.log(dropdown);
-      // console.log(event);
+    const resp = await kintone.api(kintone.api.url('/k/v1/app/form/fields.json'), 'GET', params);
+    console.log(resp);
+    Object.values(resp.properties.Table.fields.Action5.options).forEach((ele) => {
+      dropdown.push(ele);
+    });
+    // console.log(dropdown);
+    // console.log(event);
 
-      const sortedAsc = dropdown.sort(
-        (objA, objB) => Number(objA.index) - Number(objB.index),
-      );
-      // console.log(sortedAsc);
+    const sortedAsc = dropdown.sort(
+      (objA, objB) => Number(objA.index) - Number(objB.index),
+    );
+    console.log(sortedAsc);
 
-      for (let i = 0; i < 6; i++) {
-        list.push(structuredClone(event.record.Table.value[0]));
-        list[i].value.Action5.value = sortedAsc[i].label;
+    const arrTable = event.record.Table.value;
+    const nullTable = {
+      'id': null,
+      'value': {
+        'Action5': {
+          'type': 'DROP_DOWN',
+          'value': ''
+        },
+        '課題': {
+          'type': 'MULTI_LINE_TEXT',
+          'value': ''
+        },
+        '状況': {
+          'type': 'CHECK_BOX',
+          'value': ['未振り返り']
+        }
       }
+    };
 
-      //listをtableに代入する
-      event.record.Table.value = list;
-    })
-    const resp = await kintone.api(kintone.api.url('/k/v1/app/form/fields.json', true), 'GET', {'app': 15});
+    arrTable.shift();
+
+    Object.keys(dropdown).forEach((i) => {
+      arrTable.push(structuredClone(nullTable));
+      arrTable[i].value.Action5.value = sortedAsc[i].label;
+    });
+
+    console.log(arrTable);
+
     return event;
   });
 })();
