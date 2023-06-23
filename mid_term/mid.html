@@ -48,10 +48,10 @@
     // console.log(resp);
     Object.keys(resp.data).forEach((ele) => {
     //create table
-      const row = myTable.insertRow(-1);
-      const cell = row.insertCell(0);
-      const cell1 = row.insertCell(1);
-      const cell2 = row.insertCell(2);
+      const row = myTable.insertRow();
+      const cell = row.insertCell();
+      const cell1 = row.insertCell();
+      const cell2 = row.insertCell();
       cell.textContent = resp.data[ele].day.value;
       cell1.textContent = resp.data[ele].category.value;
       let content = resp.data[ele].content.value;
