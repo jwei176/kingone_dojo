@@ -3,9 +3,9 @@
  
   kintone.events.on('app.record.create.submit', async (event) => {
     const context = event.record.重複禁止項目.value;
-
+    const ID = kintone.app.getId();
     const params = {
-      app: 19,
+      app: ID,
     };
 
     //RESTAPIでレコードの情報を収得する
