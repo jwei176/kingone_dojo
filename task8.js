@@ -11,13 +11,10 @@
     Object.values(resp.properties.Table.fields.Action5.options).forEach((ele) => {
       dropdown.push(ele);
     });
-    // console.log(dropdown);
-    // console.log(event);
 
     const sortedAsc = dropdown.sort(
       (objA, objB) => Number(objA.index) - Number(objB.index),
     );
-    console.log(sortedAsc);
 
     const arrTable = event.record.Table.value;
     const nullTable = {
@@ -44,8 +41,6 @@
       arrTable.push(structuredClone(nullTable));
       arrTable[i].value.Action5.value = sortedAsc[i].label;
     });
-
-    console.log(arrTable);
 
     return event;
   });
