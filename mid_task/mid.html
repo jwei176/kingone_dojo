@@ -56,8 +56,6 @@
       let content = resp.data[ele].content.value;
       if (content.length > 30) {
         content = content.substring(0, 30) + '   ...';
-      } else {
-        content = resp.data[ele].content.value;
       }
       row.insertCell().innerHTML = `<a href="${resp.data[ele].url.value}" target="${resp.data[ele].target.value}">${content}</a>`;
     });
