@@ -1,23 +1,15 @@
-/* table {
-    border-collapse: collapse;
-    padding: 4px 8px;
-    border: 1px solid #000000;
+.product {
+  background-color: #1aaedb;
+  color: white;
 }
 
-.container {
-padding: 16px;
-padding-left: 120px;
+.ir {
+  background-color: yellow;
 }
 
-td {
-    padding: 4px 8px;
-    border: 1px solid #000000;
+.company {
+  background-color: red;
 }
-tr {
-    padding: 4px 8px;
-    border: 1px solid #000000;
-} */
-
 
 td,
 th {
@@ -25,9 +17,6 @@ th {
     padding: 10px;
 }
 
-/* td {
-    text-align: center;
-} */
 
 tr:nth-child(even) {
     background-color: #eee;

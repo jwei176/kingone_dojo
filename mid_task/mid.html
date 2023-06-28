@@ -47,24 +47,20 @@
     const myTable = document.getElementById('Table');
     Object.keys(resp.data).forEach((ele) => {
       const row = myTable.insertRow();
-      const cell = row.insertCell();
+      row.insertCell().textContent = resp.data[ele].day.value;
+
       const cell1 = row.insertCell();
-      const cell2 = row.insertCell();
-      cell.textContent = resp.data[ele].day.value;
       cell1.textContent = resp.data[ele].category.value;
+      cell1.className = resp.data[ele].label.value;
+
       let content = resp.data[ele].content.value;
       if (content.length > 30) {
         content = content.substring(0, 30) + '   ...';
       } else {
         content = resp.data[ele].content.value;
       }
-      cell2.innerHTML = `<a href="${resp.data[ele].url.value}" target="${resp.data[ele].target.value}">${content}</a>`;
+      row.insertCell().innerHTML = `<a href="${resp.data[ele].url.value}" target="${resp.data[ele].target.value}">${content}</a>`;
     });
-
-    $("td:contains('製品')").css('background-color', '#7fffd4');
-    $("td:contains('IR 情報')").css('background-color', '#ff9999');
-    $("td:contains('企業情報')").css('background-color', '#00b7eb');
-
 
   }).catch((err) => {
     console.log(`${err}`);
