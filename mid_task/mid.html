@@ -51,7 +51,7 @@
 
       const cell1 = row.insertCell();
       cell1.textContent = resp.data[ele].category.value;
-      cell1.className = resp.data[ele].label.value;
+      cell1.classList.add(resp.data[ele].label.value);
 
       let content = resp.data[ele].content.value;
       if (content.length > 30) {
