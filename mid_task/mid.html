@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="mid.css">
+<title>dojo中間</title>
+<style>
+
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>dojo中間課題</h1>
+    <h2>JavaScript講義</h2>
+  </div>
+</header>
+<main class="container">
+  <p id="text">「⾃社のHPで、APIで取得したデータを元に、最新情報を表⽰するようなサイト」</p>
+
+  <table id="Table">
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>カテゴリー</th>
+        <th>タイトル</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+</main>
+<script src="https://js.cybozu.com/axios/v0.27.2/axios.min.js"> </script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+
+<script>
+  'use strict';
+
+  axios.get('https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo', {
+    params: {
+      id: 'dojo',
+      query: 'order by day desc limit 3',
+    }
+  }).then((resp) => {
+    const myTable = document.getElementById('Table');
+    Object.keys(resp.data).forEach((ele) => {
+      const row = myTable.insertRow();
+      row.insertCell().textContent = resp.data[ele].day.value;
+
+      const cell1 = row.insertCell();
+      cell1.textContent = resp.data[ele].category.value;
+      cell1.classList.add(resp.data[ele].label.value);
+
+      let content = resp.data[ele].content.value;
+      if (content.length > 30) {
+        content = content.substring(0, 30) + '   ...';
+      }
+      row.insertCell().innerHTML = `<a href="${resp.data[ele].url.value}" target="${resp.data[ele].target.value}">${content}</a>`;
+    });
+
+  }).catch((err) => {
+    console.log(`${err}`);
+  });
+</script>
+</body>
+</html>
